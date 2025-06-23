@@ -1,0 +1,133 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="row mt-3">
+  <h1 class="col-6 offset-3">Signup</h1>
+  <div class="col-6 offset-3">
+    <form action="/signup" method="post" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          required
+        />
+      </div>
+      <button class="btn btn-success">SignUp</button>
+    </form>
+  </div>
+</div>
+
+<!-- 
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const mongoUrl = "mongodb://127.0.0.1:27017/mgs";
+const path = require("path");
+const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
+const session = require("express-session");
+const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
+
+// Suppress util.isArray warning temporarily
+process.on("warning", (warning) => {
+  if (warning.name === "DeprecationWarning" && warning.message.includes("util.isArray")) {
+    return;
+  }
+  console.warn(warning);
+});
+
+app.engine("ejs", ejsMate);
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname, "/public")));
+
+async function main() {
+  await mongoose.connect(mongoUrl);
+}
+
+main()
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+const sessionOptions = {
+  secret: "mysupersecretcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
+};
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currentUser = req.user;
+  console.log("Session:", req.session);
+  console.log("User:", req.user);
+  next();
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", userRouter);
+
+app.use((err, req, res, next) => {
+  let { statusCode = 500, message = "Something went wrong!" } = err;
+  console.error("Error:", err);
+  res.status(statusCode).render("error.ejs", { message });
+});
+
+app.listen(8080, () => {
+  console.log("Server is running on port 8080");
+}); -->
