@@ -8,9 +8,9 @@
   "license": "ISC",
   "author": "Ganesh",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "dependencies": {
     "cloudinary": "^1.41.3",
