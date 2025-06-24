@@ -8,8 +8,8 @@ const userController = require("../controllers/users.js");
 
 router
   .route("/signup")
-  .get(userController.renderSingup)
-  .post(wrapAsync(userController.Singup));
+  .get(userController.renderSignup)
+  .post(wrapAsync(userController.signup));
 
 router
   .route("/login")
@@ -18,10 +18,11 @@ router
     saveRedirectUrl,
     passport.authenticate("local", {
       failureRedirect: "/login",
-      failureFlash: true, // Enable flash messages for errors
+      failureFlash: true,
     }),
     userController.login
   );
 
 router.get("/logout", userController.logout);
+
 module.exports = router;

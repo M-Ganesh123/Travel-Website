@@ -1,10 +1,12 @@
 const User = require("../models/user");
-module.exports.renderSingup = (req, res) => {
+
+module.exports.renderSignup = (req, res) => {
   res.render("users/signup.ejs");
 };
-module.exports.Singup = async (req, res) => {
+
+module.exports.signup = async (req, res, next) => {
   try {
-    let { username, email, password } = req.body; // Changed Password to password
+    let { username, email, password } = req.body;
     let newUser = new User({ email, username });
     const registeredUser = await User.register(newUser, password);
     console.log(registeredUser);
@@ -36,7 +38,7 @@ module.exports.logout = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    req.flash("success", "you are logged out!");
+    req.flash("success", "You are logged out!");
     res.redirect("/listings");
   });
 };
