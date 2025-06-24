@@ -30,7 +30,7 @@ module.exports.isOwner = async (req, res, next) => {
   next();
 };
 module.exports.validateListing = (req, res, next) => {
-  const { error } = listingSchema.validate(req.body);
+  const { error } = listingSchema.validate(req.body.listing);
   if (error) {
     throw new ExpressError(404, error);
   } else {
@@ -39,7 +39,7 @@ module.exports.validateListing = (req, res, next) => {
 };
 
 module.exports.validateReview = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
+  const { error } = reviewSchema.validate(req.body.review);
   if (error) {
     throw new ExpressError(404, error);
   } else {
